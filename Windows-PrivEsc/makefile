@@ -1,3 +1,4 @@
+.PHONY: serve-shell 
 
 connect:
 	xfreerdp /u:user /p:password321 /cert:ignore /v:$(IP)
